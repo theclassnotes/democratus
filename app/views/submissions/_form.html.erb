@@ -1,0 +1,49 @@
+<%= form_for(@submission) do |f| %>
+  <% if @submission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@submission.errors.count, "error") %> prohibited this submission from being saved:</h2>
+
+      <ul>
+      <% @submission.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :song_title %><br />
+    <%= f.text_field :song_title %>
+  </div>
+  <div class="field">
+    <%= f.label :artist %><br />
+    <%= f.text_field :artist %>
+  </div>
+  <div class="field">
+    <%= f.label :submitted_by_id %><br />
+    <%= f.number_field :submitted_by_id %>
+  </div>
+  <div class="field">
+    <%= f.label :vid %><br />
+    <%= f.text_field :vid %>
+  </div>
+  <div class="field">
+    <%= f.label :video_service %><br />
+    <%= f.text_field :video_service %>
+  </div>
+  <div class="field">
+    <%= f.label :pros %><br />
+    <%= f.text_area :pros %>
+  </div>
+  <div class="field">
+    <%= f.label :cons %><br />
+    <%= f.text_area :cons %>
+  </div>
+  <div class="field">
+    <%= f.label :selection_session_id %><br />
+    <%= f.number_field :selection_session_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

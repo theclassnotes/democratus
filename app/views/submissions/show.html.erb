@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Song title:</b>
+  <%= @submission.song_title %>
+</p>
+
+<p>
+  <b>Artist:</b>
+  <%= @submission.artist %>
+</p>
+
+<p>
+  <b>Submitted by:</b>
+  <%= @submission.submitted_by_id %>
+</p>
+
+<p>
+  <b>Vid:</b>
+  <%= @submission.vid %>
+</p>
+
+<p>
+  <b>Video service:</b>
+  <%= @submission.video_service %>
+</p>
+
+<p>
+  <b>Pros:</b>
+  <%= @submission.pros %>
+</p>
+
+<p>
+  <b>Cons:</b>
+  <%= @submission.cons %>
+</p>
+
+<p>
+  <b>Selection session:</b>
+  <%= @submission.selection_session_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Back', submissions_path %>

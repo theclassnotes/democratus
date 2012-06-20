@@ -1,8 +1,22 @@
 class User < ActiveRecord::Base
-  
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :token_authenticatable, :confirmable, :lockable, 
+         :timeoutable, :omniauthable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :role, :is_active, :password, :password_confirmation
+  validates_presence_of :email, :password
   
   def is_admin?
-    ["gm", "md"].include? self.role.downcase
+    ["md", "gm"].include? self.role.downcase
+  end
+  
+  def role=(new_role)
+    @role = new_role
   end
   
 end
