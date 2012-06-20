@@ -21,6 +21,7 @@ module Democratus
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
+    config.plugins = [ :exception_notification ]
 
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
@@ -37,18 +38,10 @@ module Democratus
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password, :password_confirm]
-    
-    # For Heroku
-    config.assets.initialize_on_precompile = false
+    config.filter_parameters += [:password]
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
-
-    # Use SQL instead of Active Record's schema dumper when creating the database.
-    # This is necessary if your schema can't be completely dumped by the schema dumper,
-    # like if you have constraints or database-specific column types
-    # config.active_record.schema_format = :sql
 
     # Enforce whitelist mode for mass assignment.
     # This will create an empty whitelist of attributes available for mass-assignment for all models
@@ -58,8 +51,20 @@ module Democratus
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    
+    # Precompilation configuration
+    config.assets.compile = true
+    
+    # Precompile *all* assets, except those that start with underscore or start with 'rails_admin'
+    config.assets.precompile << /^(?!rails_admin)(?:.+\/)?(?!_)([^\/]*).s?css$/
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # Use exception notifier
+    config.middleware.use ExceptionNotifier,
+      :email_prefix => "[Democratus] ",
+      :sender_address => %{"Notifier" <notifier@theclassnotes.com>},
+      :exception_recipients => %w{gm@theclassnotes.com}
   end
 end

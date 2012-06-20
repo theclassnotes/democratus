@@ -31,7 +31,7 @@ Democratus::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :info
 
   # Prepend all log lines with the following tags
   # config.log_tags = [ :subdomain, :uuid ]
@@ -47,9 +47,15 @@ Democratus::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
+  
+  # Prevent initializing the application before assets are precompiled (required for heroku)
+  config.assets.initialize_on_precompile = false
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  
+  # Set Default URL (per devise instructions)
+  config.action_mailer.default_url_options = { :host => 'democratus.herokuapp.com' }
 
   # Enable threaded mode
   # config.threadsafe!
@@ -64,7 +70,4 @@ Democratus::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
-  
-  # ActionMailer default url
-  config.action_mailer.default_url_options = { :host => 'http://democratus.herokuapp.com' }
 end

@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
 gem 'mysql2'
+gem 'thin'
+gem 'pg'
 
 # Slim rendering engine (alternative to ERB)
 gem 'slim'
