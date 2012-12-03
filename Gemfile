@@ -18,17 +18,19 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
-  gem 'rspec-rails'
-  gem 'capistrano'
-  gem 'capistrano-ext'
+group :test, :development do
+  gem "rspec"
+  gem 'rspec-rails', "~> 2.0"
+  gem "factory_girl_rails", "< 2.0"
+  gem "factory_girl", "< 3.0"
+  gem "brakeman", "~> 1.7.0"
+  case RUBY_PLATFORM
+    when /darwin/
+      gem 'rb-fsevent'
+    when /linux/
+      gem 'rb-inotify', '~> 0.8.8'
+  end
 end
-group :test do
-  gem "factory_girl_rails"
-  gem "capybara"
-  gem "guard-rspec"
-end
-gem "rspec-rails", :group => [:test, :development]
 
 gem 'jquery-rails'
 
