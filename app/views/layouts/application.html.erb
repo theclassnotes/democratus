@@ -8,10 +8,23 @@
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div id="container">
+    
+    <header id="header">
+        <h1><%= link_to "Democratus", root_path %></h1>
+        <%= link_to "submissions", submissions_path %> |
+        <%= link_to "submit", new_submission_path %> |
+        <%= link_to "account", edit_user_registration_path(current_user) %>
+    </header>
+    
+    <section id="content">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
 
-<%= yield %>
+        <%= yield %>
+    </section>
+    
+</div>
 
 </body>
 </html>

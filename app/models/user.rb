@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
          :timeoutable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :role, :is_active, :password, :password_confirmation
-  validates_presence_of :email, :password
+  attr_accessible :name, :email, :role, :is_active, :password, :password_confirmation
+  validates_presence_of :name, :email, :password
   
   def is_admin?
     ["md", "gm"].include? self.role.downcase

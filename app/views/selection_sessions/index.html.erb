@@ -1,0 +1,21 @@
+<h1>Listing selection_sessions</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @selection_sessions.each do |selection_session| %>
+  <tr>
+    <td><%= link_to 'Show', selection_session %></td>
+    <td><%= link_to 'Edit', edit_selection_session_path(selection_session) %></td>
+    <td><%= link_to 'Destroy', selection_session, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Selection session', new_selection_session_path %>

@@ -2,11 +2,16 @@ class SubmissionsController < ApplicationController
   # GET /submissions
   # GET /submissions.json
   def index
-    @submissions = Submission.all
+    current_selection_session = SelectionSession.current
+    unless current_selection_session.nil?
+      @submissions = Submission.where(:selection_session_id => current_selection_session).order('created_at DESC')
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @submissions }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @submissions }
+      end
+    else
+      redirect_to '/out-of-session'
     end
   end
 

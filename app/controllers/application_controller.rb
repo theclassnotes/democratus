@@ -5,7 +5,13 @@ class ApplicationController < ActionController::Base
   
   before_filter :authenticate_user!, :instantiate_controller_and_action_names, :prepare_for_mobile
   
+  def current_selection_session
+    SelectionSession.current_selection_session
+  end
+  helper_method :current_selection_session
+  
   private
+    
     def instantiate_controller_and_action_names
       @current_controller = controller_name
       @current_action = action_name

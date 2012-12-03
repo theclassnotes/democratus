@@ -1,9 +1,16 @@
 Democratus::Application.routes.draw do
+  resources :selection_sessions
+
+  resources :likes
+
   resources :submissions
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   devise_for :users
+  
+  resources :users
+  resources :submissions
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

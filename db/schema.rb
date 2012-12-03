@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120620214543) do
+ActiveRecord::Schema.define(:version => 20120621000305) do
+
+  create_table "likes", :force => true do |t|
+    t.integer  "liker_id",      :null => false
+    t.integer  "submission_id", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "likes", ["liker_id", "submission_id"], :name => "index_likes_on_liker_id_and_submission_id", :unique => true
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -26,6 +35,15 @@ ActiveRecord::Schema.define(:version => 20120620214543) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
+  create_table "selection_sessions", :force => true do |t|
+    t.string   "name",          :null => false
+    t.datetime "opened_on",     :null => false
+    t.datetime "closed_on"
+    t.integer  "created_by_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "submissions", :force => true do |t|
     t.string   "song_title",           :null => false
     t.string   "artist",               :null => false
@@ -37,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20120620214543) do
     t.integer  "selection_session_id", :null => false
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.string   "video_link",           :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -62,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20120620214543) do
     t.string   "authentication_token"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
+    t.string   "name",                                         :null => false
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

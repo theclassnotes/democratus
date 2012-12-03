@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Song title:</b>
   <%= @submission.song_title %>
@@ -12,7 +10,7 @@
 
 <p>
   <b>Submitted by:</b>
-  <%= @submission.submitted_by_id %>
+  <%= @submission.submitted_by.name %>
 </p>
 
 <p>
